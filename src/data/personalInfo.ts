@@ -1,0 +1,16 @@
+export const personalInfo = {
+  name: '[[YOUR_NAME]]',
+  initials: '[[YOUR_INITIALS]]',
+  professionalTitle: '[[YOUR_PROFESSIONAL_TITLE]]',
+  email: '[[YOUR_EMAIL]]',
+  githubUrl: '[[YOUR_GITHUB_URL]]',
+  linkedinUrl: '[[YOUR_LINKEDIN_URL]]',
+  university: 'Universiti Tunku Abdul Rahman (UTAR)',
+  programme: 'Software Engineering',
+  academicYear: 'Year 1',
+  aboutIntro: '[[ABOUT_INTRO]]',
+  careerAspiration: '[[CAREER_ASPIRATION]]',
+  learningFocus: '[[LEARNING_FOCUS]]',
+  interests: ['[[INTEREST_1]]', '[[INTEREST_2]]', '[[INTEREST_3]]'],
+  typingPhrases: ['[[TYPING_PHRASE_1]]', '[[TYPING_PHRASE_2]]'],
+}
