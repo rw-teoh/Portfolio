@@ -30,6 +30,16 @@ export const zh: Dictionary = {
     greeting: '你好，我是',
     studentLabel: '软件工程专业学生',
     interestLead: '我感兴趣的是',
+    staticPhraseLabel: '软件工程兴趣',
+    scrollDown: '向下滚动',
+    certificates: '证书',
+    interestButtons: '兴趣姿势',
+  },
+  contactStrip: {
+    label: '联系方式',
+    email: '电子邮箱',
+    github: 'GitHub',
+    linkedin: '领英',
   },
   avatar: {
     defaultAlt: '人物插画',

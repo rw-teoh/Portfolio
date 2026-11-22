@@ -29,6 +29,16 @@ export const en: Dictionary = {
     greeting: 'Hello, I’m',
     studentLabel: 'Software Engineering Student',
     interestLead: 'I’m interested in',
+    staticPhraseLabel: 'Software engineering interests',
+    scrollDown: 'Scroll down',
+    certificates: 'Certificates',
+    interestButtons: 'Interest poses',
+  },
+  contactStrip: {
+    label: 'Contact links',
+    email: 'Email',
+    github: 'GitHub',
+    linkedin: 'LinkedIn',
   },
   avatar: {
     defaultAlt: 'Portrait illustration',

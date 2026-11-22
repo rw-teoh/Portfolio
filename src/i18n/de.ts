@@ -30,6 +30,16 @@ export const de: Dictionary = {
     greeting: 'Hallo, ich bin',
     studentLabel: 'Student der Softwaretechnik',
     interestLead: 'Mich interessiert',
+    staticPhraseLabel: 'Interessen in der Softwaretechnik',
+    scrollDown: 'Weiter nach unten',
+    certificates: 'Zertifikate',
+    interestButtons: 'Interessenposen',
+  },
+  contactStrip: {
+    label: 'Kontaktlinks',
+    email: 'E-Mail',
+    github: 'GitHub',
+    linkedin: 'LinkedIn',
   },
   avatar: {
     defaultAlt: 'Porträtillustration',

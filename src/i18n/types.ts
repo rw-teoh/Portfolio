@@ -29,6 +29,16 @@ export type Dictionary = {
     greeting: string
     studentLabel: string
     interestLead: string
+    staticPhraseLabel: string
+    scrollDown: string
+    certificates: string
+    interestButtons: string
+  }
+  contactStrip: {
+    label: string
+    email: string
+    github: string
+    linkedin: string
   }
   avatar: {
     defaultAlt: string

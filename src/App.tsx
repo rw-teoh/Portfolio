@@ -1,4 +1,4 @@
-import { Hero } from './components/Hero'
+import { Hero } from './sections/Hero'
 import { Navbar } from './components/Navbar'
 import { LanguageProvider } from './i18n/LanguageProvider'
 import { ThemeProvider } from './hooks/useTheme'

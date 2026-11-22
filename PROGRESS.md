@@ -27,7 +27,7 @@ Design change request v10.1 — Part A: Tokens, Theme and Language Foundation
 
 ## In progress
 
-- Part B Navbar complete after final lint cleanup; awaiting feedback before Part C.
+- Part C redesigned Hero complete; awaiting feedback before Part D.
 
 ## Validation
 
@@ -35,6 +35,7 @@ Design change request v10.1 — Part A: Tokens, Theme and Language Foundation
 - `npm.cmd run lint` passed with no Oxlint findings.
 - Navigation validation: `npm.cmd run build` and `npm.cmd run lint` passed.
 - Part B final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
+- Part C final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
 
 ### Design change request v10.1 — Part A validation
 
@@ -73,5 +74,5 @@ Design change request v10.1 — Part A: Tokens, Theme and Language Foundation
 - Part A completed: added the approved warm-neutral tokens, subtle CSS-only background, light-first theme persistence, and typed English/Simplified Chinese/German dictionary foundation.
 - Theme and language choices are applied before first paint when saved values exist; light and English are the defaults.
 - Personal Hero text now has language-specific placeholders in `src/data/personalInfo.ts`.
-- The previous Hero will be replaced in Part C and moved to `src/sections/Hero.tsx` as approved.
-- Part A validation initially found a ThemeProvider JSX-in-`.ts` error and a language Fast Refresh warning; both are being corrected before final validation.
+- Part C moved the old Hero to `src/sections/Hero.tsx`, added avatar data, interest controls, the fixed contact strip, and Scroll down/Certificates links.
+- Original PNG avatars remain in use. No conversion or `index.html` preload was added.
