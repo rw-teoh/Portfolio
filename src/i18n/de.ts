@@ -86,4 +86,9 @@ export const de: Dictionary = {
     demoLink: 'Live-Demo',
     technologiesLabel: 'Technologien',
   },
+  education: {
+    eyebrow: 'Ausbildung',
+    title: 'Mein Lernweg',
+    certificatesLink: 'Zertifikate',
+  },
 }

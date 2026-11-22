@@ -36,10 +36,13 @@ Design change request v10.1 — Part F: Projects
 - Cascade fix validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
 - Added an opaque ring-card surface with a pointer-transparent depth tint overlay; front cards have no tint and opacity remains 1.
 - Solid-card tint overlay validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
+- Added the localized Education timeline section with UTAR Year 1 real values and placeholder-only remaining entries.
+- Made existing skill cards float with subtle irregular motion and pause/hover lift, preserving non-interactive behavior and all skill content.
+- Part G final validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
 
 ## In progress
 
-- Revised Part F 3D ring implemented; the ring implementation is permanent and five temporary PREVIEW ONLY entries remain in `src/data/projects.ts` for feedback.
+- Part G Education implemented; awaiting build/lint feedback.
 
 ## Validation
 

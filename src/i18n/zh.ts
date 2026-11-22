@@ -86,4 +86,9 @@ export const zh: Dictionary = {
     demoLink: '在线演示',
     technologiesLabel: '技术',
   },
+  education: {
+    eyebrow: '教育',
+    title: '学习经历',
+    certificatesLink: '证书',
+  },
 }

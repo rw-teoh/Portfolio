@@ -85,4 +85,9 @@ export type Dictionary = {
     demoLink: string
     technologiesLabel: string
   }
+  education: {
+    eyebrow: string
+    title: string
+    certificatesLink: string
+  }
 }
