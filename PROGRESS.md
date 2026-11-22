@@ -27,13 +27,14 @@ Design change request v10.1 — Part A: Tokens, Theme and Language Foundation
 
 ## In progress
 
-- Part A complete; awaiting feedback before Part B.
+- Part B Navbar complete after final lint cleanup; awaiting feedback before Part C.
 
 ## Validation
 
 - `npm.cmd run build` passed: TypeScript and Vite production build completed successfully.
 - `npm.cmd run lint` passed with no Oxlint findings.
 - Navigation validation: `npm.cmd run build` and `npm.cmd run lint` passed.
+- Part B final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
 
 ### Design change request v10.1 — Part A validation
 

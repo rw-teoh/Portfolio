@@ -2,6 +2,14 @@ import type { Dictionary } from './types'
 
 export const en: Dictionary = {
   languageName: 'English',
+  navbar: {
+    primaryNavigation: 'Primary navigation',
+    openMenu: 'Open navigation menu',
+    closeMenu: 'Close navigation menu',
+    switchToLight: 'Switch to light theme',
+    switchToDark: 'Switch to dark theme',
+    languageSwitcher: 'Choose language',
+  },
   navigation: {
     home: 'Home',
     about: 'About',

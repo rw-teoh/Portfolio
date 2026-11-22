@@ -3,6 +3,14 @@ import type { Dictionary } from './types'
 // Draft interface translation; needs native-speaker check.
 export const zh: Dictionary = {
   languageName: '简体中文',
+  navbar: {
+    primaryNavigation: '主导航',
+    openMenu: '打开导航菜单',
+    closeMenu: '关闭导航菜单',
+    switchToLight: '切换到浅色主题',
+    switchToDark: '切换到深色主题',
+    languageSwitcher: '选择语言',
+  },
   navigation: {
     home: '首页',
     about: '关于',

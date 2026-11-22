@@ -3,6 +3,14 @@ import type { Dictionary } from './types'
 // Draft interface translation; needs native-speaker check.
 export const de: Dictionary = {
   languageName: 'Deutsch',
+  navbar: {
+    primaryNavigation: 'Hauptnavigation',
+    openMenu: 'Navigationsmenü öffnen',
+    closeMenu: 'Navigationsmenü schließen',
+    switchToLight: 'Zu hellem Design wechseln',
+    switchToDark: 'Zu dunklem Design wechseln',
+    languageSwitcher: 'Sprache auswählen',
+  },
   navigation: {
     home: 'Start',
     about: 'Über mich',

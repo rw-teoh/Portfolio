@@ -2,6 +2,14 @@ export type Language = 'en' | 'zh-Hans' | 'de'
 
 export type Dictionary = {
   languageName: string
+  navbar: {
+    primaryNavigation: string
+    openMenu: string
+    closeMenu: string
+    switchToLight: string
+    switchToDark: string
+    languageSwitcher: string
+  }
   navigation: {
     home: string
     about: string
