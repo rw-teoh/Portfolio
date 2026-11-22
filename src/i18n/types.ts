@@ -58,4 +58,31 @@ export type Dictionary = {
     careerLabel: string
     learningLabel: string
   }
+  skills: {
+    eyebrow: string
+    title: string
+    categories: {
+      programmingLanguages: string
+      frontend: string
+      backend: string
+      databases: string
+      developerTools: string
+      otherTechnologies: string
+    }
+  }
+  projects: {
+    eyebrow: string
+    title: string
+    intro: string
+    emptyTitle: string
+    emptyDescription: string
+    carouselLabel: string
+    carouselRoleDescription: string
+    slideRoleDescription: string
+    slideLabel: string
+    currentProjectAnnouncement: string
+    repositoryLink: string
+    demoLink: string
+    technologiesLabel: string
+  }
 }

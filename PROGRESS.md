@@ -2,7 +2,7 @@
 
 ## Current stage
 
-Design change request v10.1 — Part A: Tokens, Theme and Language Foundation
+Design change request v10.1 — Part F: Projects
 
 ## Completed
 
@@ -24,10 +24,22 @@ Design change request v10.1 — Part A: Tokens, Theme and Language Foundation
 - Added the Solar Amber design tokens and no-flash theme script.
 - Added reusable button, container, heading and reveal/theme hooks.
 - Added placeholder personal, skills, projects and GitHub data files.
+- Implemented the localized manual Projects section and reusable project card; no GitHub fetching was added.
+- Previous Projects horizontal scroll-snap carousel implementation is superseded.
+- Reworked Projects as a permanent localized 3D ring for four or more projects, with simple layouts below four and a reduced-motion static list.
+- Added five temporary PREVIEW ONLY ring fixtures with localized copy and alt text, two technology placeholders each, inline SVG thumbnails, and `#` links; remove them only in a separate step when requested.
+- Resized the permanent 3D ring with fluid CSS custom properties and aria-hidden zero-layout measurement elements.
+- Reserved a 72px right gutter for the fixed contact strip; heading is above the ring at every width.
+- Ring revision 3 uses 200px cards, 115px radius and 70px lift at 320px, reaching 380px cards, 330px radius and 150px lift from 1280px upward.
+- Ring revision 3 build passed; lint passed with no findings.
+- Cascade fix: removed project-ring custom-property fallback declarations from the base theme block and covered widths below 320px with the `max-width: 359px` rule.
+- Cascade fix validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
+- Added an opaque ring-card surface with a pointer-transparent depth tint overlay; front cards have no tint and opacity remains 1.
+- Solid-card tint overlay validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
 
 ## In progress
 
-- Part D About complete; awaiting feedback before Part E.
+- Revised Part F 3D ring implemented; the ring implementation is permanent and five temporary PREVIEW ONLY entries remain in `src/data/projects.ts` for feedback.
 
 ## Validation
 
@@ -37,6 +49,12 @@ Design change request v10.1 — Part A: Tokens, Theme and Language Foundation
 - Part B final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
 - Part C final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
 - Part D final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
+- Part E final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
+- Revised Part F 3D ring build passed; lint passed with no findings.
+- Ring size revision: build passed; lint passed with no findings.
+- Ring size revision 2: cards enlarged with piecewise continuous CSS ranges; heading remains at the smaller h2 size and the side-by-side breakpoint is 1235px.
+- Ring size revision 2 build passed; lint passed with no findings.
+- Revised Part F validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
 
 ### Design change request v10.1 — Part A validation
 
@@ -45,9 +63,8 @@ Design change request v10.1 — Part A: Tokens, Theme and Language Foundation
 
 ## Pending
 
-- Part B: reworked Navbar with language and theme controls.
-- Part C: replace Hero according to v10.1.
-- About and remaining website sections.
+- Remove the three temporary PREVIEW ONLY entries from `src/data/projects.ts` only after a separate request.
+- Continue with the next approved portfolio part.
 - GitHub integration.
 - Testing and deployment preparation.
 
@@ -80,6 +97,7 @@ Design change request v10.1 — Part A: Tokens, Theme and Language Foundation
 
 ## Deferred items
 
+- Before deployment, replace or remove the five PREVIEW ONLY entries in src/data/projects.ts (real projects need real links, thumbnails with width, height and alt text, and at least four projects for the ring). Search the whole project for 'PREVIEW ONLY' and '[[' and confirm both return nothing unexpected.
 - 3D avatar (Part K): do not start until I say a GLB file is ready. I need to get or commission a model first.
 - Convert avatar PNGs to optimized WebP copies (cwebp setup and dry run), then switch src/data/avatar.ts.
 - Rabbits pose image is missing.

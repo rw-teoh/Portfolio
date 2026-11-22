@@ -70,3 +70,12 @@ export function ArrowRightIcon(props: IconProps) {
     </IconBase>
   )
 }
+
+export function GenericSkillIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <rect x="4" y="4" width="16" height="16" rx="3" />
+      <path d="m9 9-3 3 3 3m6-6 3 3-3 3m-2-8-2 10" />
+    </IconBase>
+  )
+}
