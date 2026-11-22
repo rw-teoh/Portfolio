@@ -47,4 +47,16 @@ export const zh: Dictionary = {
     unavailable: '图片尚未提供',
     miniAvatarButton: '更换头像表情',
   },
+  about: {
+    eyebrow: '关于',
+    title: '关于我的方向',
+    introductionLabel: '简介',
+    detailsLabel: '详细信息',
+    universityLabel: '大学',
+    programmeLabel: '课程',
+    academicYearLabel: '学年',
+    interestsLabel: '兴趣领域',
+    careerLabel: '职业方向',
+    learningLabel: '学习重点',
+  },
 }

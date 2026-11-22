@@ -21,6 +21,9 @@ export type LocalizedPersonalInfo = {
   name: string
   professionalTitle: string
   introduction: string
+  aboutIntro: string
+  careerAspiration: string
+  learningFocus: string
   typingPhrases: [string, string]
   interests: [string, string, string, string, string, string]
 }
@@ -30,6 +33,9 @@ export const personalInfoByLanguage: Record<Language, LocalizedPersonalInfo> = {
     name: '[[YOUR_NAME]]',
     professionalTitle: '[[YOUR_PROFESSIONAL_TITLE]]',
     introduction: '[[HERO_INTRO_EN]]',
+    aboutIntro: '[[ABOUT_INTRO]]',
+    careerAspiration: '[[CAREER_ASPIRATION]]',
+    learningFocus: '[[LEARNING_FOCUS]]',
     typingPhrases: ['[[TYPING_PHRASE_1]]', '[[TYPING_PHRASE_2]]'],
     interests: [
       '[[INTEREST_1]]',
@@ -44,6 +50,9 @@ export const personalInfoByLanguage: Record<Language, LocalizedPersonalInfo> = {
     name: '[[YOUR_NAME_ZH]]',
     professionalTitle: '[[YOUR_PROFESSIONAL_TITLE_ZH]]',
     introduction: '[[HERO_INTRO_ZH]]',
+    aboutIntro: '[[ABOUT_INTRO_ZH]]',
+    careerAspiration: '[[CAREER_ASPIRATION_ZH]]',
+    learningFocus: '[[LEARNING_FOCUS_ZH]]',
     typingPhrases: ['[[TYPING_PHRASE_1_ZH]]', '[[TYPING_PHRASE_2_ZH]]'],
     interests: [
       '[[INTEREST_1_ZH]]',
@@ -58,6 +67,9 @@ export const personalInfoByLanguage: Record<Language, LocalizedPersonalInfo> = {
     name: '[[YOUR_NAME_DE]]',
     professionalTitle: '[[YOUR_PROFESSIONAL_TITLE_DE]]',
     introduction: '[[HERO_INTRO_DE]]',
+    aboutIntro: '[[ABOUT_INTRO_DE]]',
+    careerAspiration: '[[CAREER_ASPIRATION_DE]]',
+    learningFocus: '[[LEARNING_FOCUS_DE]]',
     typingPhrases: ['[[TYPING_PHRASE_1_DE]]', '[[TYPING_PHRASE_2_DE]]'],
     interests: [
       '[[INTEREST_1_DE]]',

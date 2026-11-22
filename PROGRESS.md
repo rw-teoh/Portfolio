@@ -27,7 +27,7 @@ Design change request v10.1 — Part A: Tokens, Theme and Language Foundation
 
 ## In progress
 
-- Part C redesigned Hero complete; awaiting feedback before Part D.
+- Part D About complete; awaiting feedback before Part E.
 
 ## Validation
 
@@ -36,6 +36,7 @@ Design change request v10.1 — Part A: Tokens, Theme and Language Foundation
 - Navigation validation: `npm.cmd run build` and `npm.cmd run lint` passed.
 - Part B final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
 - Part C final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
+- Part D final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
 
 ### Design change request v10.1 — Part A validation
 
@@ -76,3 +77,16 @@ Design change request v10.1 — Part A: Tokens, Theme and Language Foundation
 - Personal Hero text now has language-specific placeholders in `src/data/personalInfo.ts`.
 - Part C moved the old Hero to `src/sections/Hero.tsx`, added avatar data, interest controls, the fixed contact strip, and Scroll down/Certificates links.
 - Original PNG avatars remain in use. No conversion or `index.html` preload was added.
+
+## Deferred items
+
+- 3D avatar (Part K): do not start until I say a GLB file is ready. I need to get or commission a model first.
+- Convert avatar PNGs to optimized WebP copies (cwebp setup and dry run), then switch src/data/avatar.ts.
+- Rabbits pose image is missing.
+- Decide whether the navbar initials logo stays visible at 801-1100px.
+- Replace all [[PLACEHOLDERS]] with my real details, then run the leftover "[[" check.
+- Native-speaker check of the Chinese and German interface text.
+- Configure the GitHub username and hide list.
+- Add real certificates and projects.
+- Run Lighthouse on the production build and test Firefox, Safari and Edge manually.
+- Deployment to Vercel, including the Open Graph image URL.

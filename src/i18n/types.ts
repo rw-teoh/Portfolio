@@ -46,4 +46,16 @@ export type Dictionary = {
     unavailable: string
     miniAvatarButton: string
   }
+  about: {
+    eyebrow: string
+    title: string
+    introductionLabel: string
+    detailsLabel: string
+    universityLabel: string
+    programmeLabel: string
+    academicYearLabel: string
+    interestsLabel: string
+    careerLabel: string
+    learningLabel: string
+  }
 }

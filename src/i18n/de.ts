@@ -47,4 +47,16 @@ export const de: Dictionary = {
     unavailable: 'Bild noch nicht bereitgestellt',
     miniAvatarButton: 'Avatar-Ausdruck ändern',
   },
+  about: {
+    eyebrow: 'Über mich',
+    title: 'Ein wenig über meine Richtung',
+    introductionLabel: 'Vorstellung',
+    detailsLabel: 'Details',
+    universityLabel: 'Universität',
+    programmeLabel: 'Studiengang',
+    academicYearLabel: 'Studienjahr',
+    interestsLabel: 'Interessengebiete',
+    careerLabel: 'Karriererichtung',
+    learningLabel: 'Lernschwerpunkt',
+  },
 }

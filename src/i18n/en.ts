@@ -46,4 +46,16 @@ export const en: Dictionary = {
     unavailable: 'Image not supplied yet',
     miniAvatarButton: 'Change avatar expression',
   },
+  about: {
+    eyebrow: 'About',
+    title: 'A little about my direction',
+    introductionLabel: 'Introduction',
+    detailsLabel: 'Details',
+    universityLabel: 'University',
+    programmeLabel: 'Programme',
+    academicYearLabel: 'Academic year',
+    interestsLabel: 'Areas of interest',
+    careerLabel: 'Career direction',
+    learningLabel: 'Learning focus',
+  },
 }
