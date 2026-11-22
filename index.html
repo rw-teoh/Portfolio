@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,12 +15,21 @@
     <meta name="twitter:image" content="[[OG_IMAGE_URL]]" />
     <title>[[PORTFOLIO_PAGE_TITLE]]</title>
     <script>
+      const root = document.documentElement
       try {
         const savedTheme = localStorage.getItem('portfolio-theme')
-        document.documentElement.dataset.theme =
-          savedTheme === 'light' ? 'light' : 'dark'
+        root.dataset.theme = savedTheme === 'dark' ? 'dark' : 'light'
       } catch {
-        document.documentElement.dataset.theme = 'dark'
+        root.dataset.theme = 'light'
+      }
+
+      try {
+        const savedLanguage = localStorage.getItem('portfolio-language')
+        root.lang = ['en', 'zh-Hans', 'de'].includes(savedLanguage ?? '')
+          ? savedLanguage
+          : 'en'
+      } catch {
+        root.lang = 'en'
       }
     </script>
   </head>

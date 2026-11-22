@@ -2,10 +2,15 @@
 
 ## Current stage
 
-Stage 3: Navigation
+Design change request v10.1 — Part A: Tokens, Theme and Language Foundation
 
 ## Completed
 
+- Completed and approved the v10.1 design plan.
+- Recorded approval to move the Hero from `src/components/Hero.tsx` to `src/sections/Hero.tsx` during the Hero part, not Part A.
+- Read-only approved inspection measured supplied avatar PNGs at 3,691,018 bytes total.
+- Read-only approved contrast calculations completed for the proposed warm-neutral theme and accents.
+- Approved avatar conversion conditions: user obtains `cwebp`; verify only after user confirms it is present; dry-run file/width listing before conversion; conversion output is separate; source images remain untouched.
 - Read-only Stage 1 inspection and plan approved.
 - The temporary scaffold command initially used an unsafe Windows path and created `CUsersuserAppDataLocalTempportfolio-scaffold` inside the repository.
 - The accidental folder was deleted manually in VS Code.
@@ -22,7 +27,7 @@ Stage 3: Navigation
 
 ## In progress
 
-- Navigation section complete; awaiting feedback before Hero.
+- Part A complete; awaiting feedback before Part B.
 
 ## Validation
 
@@ -30,20 +35,29 @@ Stage 3: Navigation
 - `npm.cmd run lint` passed with no Oxlint findings.
 - Navigation validation: `npm.cmd run build` and `npm.cmd run lint` passed.
 
+### Design change request v10.1 — Part A validation
+
+- `npm.cmd run build` passed after fixing an initial JSX-in-`.ts` error.
+- `npm.cmd run lint` passed with no findings after separating the language context hook.
+
 ## Pending
 
-- Hero and remaining website sections.
+- Part B: reworked Navbar with language and theme controls.
+- Part C: replace Hero according to v10.1.
+- About and remaining website sections.
 - GitHub integration.
 - Testing and deployment preparation.
 
 ## Decisions
 
-- Theme: dark first visit, saved choice in `localStorage`, applied before first paint.
-- Palette: Solar Amber with neutral surfaces.
+- Theme: light first visit using `#EDE8E0`; saved choice in `localStorage`, applied before first paint.
+- Palette: warm-neutral light/dark tokens and approved accent set from v10.1.
 - Navigation: hash anchors.
 - Tailwind: v4 with the Vite plugin.
-- React Icons deferred to the Technical Skills stage.
+- Languages: English default, Simplified Chinese and German; typed dictionaries, no i18n package.
+- React Icons deferred/not planned for the redesign; custom SVGs for contact marks.
 - Playwright deferred to Stage 5.
+- Avatar originals stay unchanged; any WebP conversion requires a dry run and separate approval.
 
 ## Stage 3: Navigation
 
@@ -51,4 +65,12 @@ Stage 3: Navigation
 - Added active-section tracking, hash links, mobile-menu Escape handling and focus management.
 - Moved the theme toggle into the navigation bar.
 - Added the approved Solar Amber SVG favicon placeholder.
-- Awaiting feedback before starting the Hero section.
+- The original navigation and first Hero version are superseded by design change request v10.1.
+
+## Design change request v10.1
+
+- Part A completed: added the approved warm-neutral tokens, subtle CSS-only background, light-first theme persistence, and typed English/Simplified Chinese/German dictionary foundation.
+- Theme and language choices are applied before first paint when saved values exist; light and English are the defaults.
+- Personal Hero text now has language-specific placeholders in `src/data/personalInfo.ts`.
+- The previous Hero will be replaced in Part C and moved to `src/sections/Hero.tsx` as approved.
+- Part A validation initially found a ThemeProvider JSX-in-`.ts` error and a language Fast Refresh warning; both are being corrected before final validation.

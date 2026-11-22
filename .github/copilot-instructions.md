@@ -1,13 +1,15 @@
 # Portfolio project rules
-- Work in stages from the master prompt; do one stage or section at a time, then stop and wait for "Approved" or numbered change requests.
-- Stage 1 is read-only: no file changes, no installs.
+- Work in stages; do one part at a time, then stop and wait for "Approved" or numbered change requests.
+- The design change request (v10) overrides the master prompt (v9) where they conflict.
 - Before any terminal command, state the command, what it does and which files it affects, and wait for approval.
 - Never run git commands; suggest a commit message after each approved stage.
 - Never invent personal details, projects, skills, achievements, statistics or testimonials.
 - Use placeholders in the format [[UPPER_SNAKE_CASE]]. Before deployment advice, search the whole project for "[[" and report every match.
 - Do not install any dependency without my approval and a reason.
-- Theme: dark on first visit, then the saved choice, applied before first paint.
-- Contact: mailto link and social links only, no form.
+- Theme: light first (#EDE8E0), dark as the alternative, saved choice, applied before first paint.
+- Languages: English default, Simplified Chinese, German; no i18n library.
+- No purple or indigo, no flat backgrounds, no Tailwind default palette, no emoji as icons, no linear or default ease-in-out easing.
+- Contact: mailto link and social links only, no form. Certificates are a separate hash page.
 - Projects data starts empty; GitHub repos appear only after a username is configured, minus hiddenRepos.
 - Target Lighthouse 90+ on the production build; check widths 360, 768, 1024 and 1440 px.
 - Say clearly which checks you actually ran and which I must do manually.

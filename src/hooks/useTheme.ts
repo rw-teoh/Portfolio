@@ -1,29 +1,59 @@
-import { useEffect, useState } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+  createElement,
+  type ReactNode,
+} from 'react'
 
-type Theme = 'dark' | 'light'
+export type Theme = 'dark' | 'light'
 
-export function useTheme() {
+type ThemeContextValue = {
+  theme: Theme
+  toggleTheme: () => void
+}
+
+const ThemeContext = createContext<ThemeContextValue | null>(null)
+
+type ThemeProviderProps = {
+  children: ReactNode
+}
+
+export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
-    return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
+    return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
   })
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
   }, [theme])
 
-  function toggleTheme() {
-    setTheme((current) => {
-      const nextTheme = current === 'dark' ? 'light' : 'dark'
+  const toggleTheme = useCallback(() => {
+    const nextTheme: Theme = theme === 'light' ? 'dark' : 'light'
+    setTheme(nextTheme)
 
-      try {
-        localStorage.setItem('portfolio-theme', nextTheme)
-      } catch {
-        // The theme still works for this visit when storage is unavailable.
-      }
+    try {
+      localStorage.setItem('portfolio-theme', nextTheme)
+    } catch {
+      // Keep the selected theme for this visit if storage is unavailable.
+    }
+  }, [theme])
 
-      return nextTheme
-    })
+  return createElement(
+    ThemeContext.Provider,
+    { value: { theme, toggleTheme } },
+    children,
+  )
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext)
+
+  if (!context) {
+    throw new Error('useTheme must be used within ThemeProvider')
   }
 
-  return { theme, toggleTheme }
+  return context
 }
