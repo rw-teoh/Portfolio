@@ -1,12 +1,12 @@
 import type { Language } from '../i18n/types'
 
 export const personalInfo = {
-  name: '[[YOUR_NAME]]',
-  initials: '[[YOUR_INITIALS]]',
-  professionalTitle: '[[YOUR_PROFESSIONAL_TITLE]]',
-  email: '[[YOUR_EMAIL]]',
-  githubUrl: '[[YOUR_GITHUB_URL]]',
-  linkedinUrl: '[[YOUR_LINKEDIN_URL]]',
+  name: 'Rei Wen',
+  initials: 'RW',
+  professionalTitle: 'Software Engineer',
+  email: 'reiwen88@gmail.com',
+  githubUrl: 'https://github.com/rw-teoh',
+  linkedinUrl: 'https://linkedin.com/in/rei-wen-teoh-63616744a',
   university: 'Universiti Tunku Abdul Rahman (UTAR)',
   programme: 'Software Engineering',
   academicYear: 'Year 1',
@@ -14,6 +14,7 @@ export const personalInfo = {
   careerAspiration: '[[CAREER_ASPIRATION]]',
   learningFocus: '[[LEARNING_FOCUS]]',
   interests: ['[[INTEREST_1]]', '[[INTEREST_2]]', '[[INTEREST_3]]'],
+  AreaInterests: ['[[INTEREST_1]]', '[[INTEREST_2]]', '[[INTEREST_3]]'],
   typingPhrases: ['[[TYPING_PHRASE_1]]', '[[TYPING_PHRASE_2]]'],
 }
 
@@ -24,26 +25,36 @@ export type LocalizedPersonalInfo = {
   aboutIntro: string
   careerAspiration: string
   learningFocus: string
-  typingPhrases: [string, string]
+  typingPhrases: [string, string, string]
   interests: [string, string, string, string, string, string]
+  AreaInterests: [string, string, string, string, string, string]
+
 }
 
 export const personalInfoByLanguage: Record<Language, LocalizedPersonalInfo> = {
   en: {
-    name: '[[YOUR_NAME]]',
-    professionalTitle: '[[YOUR_PROFESSIONAL_TITLE]]',
-    introduction: '[[HERO_INTRO_EN]]',
-    aboutIntro: '[[ABOUT_INTRO]]',
+    name: 'Rei Wen',
+    professionalTitle: 'Bachelor of Software Engineering (Honours) Student',
+    introduction: 'An ordinary girl who seeks the extraordinary.',
+    aboutIntro: 'A student who are still learning and exploring the world of software engineering.',
     careerAspiration: '[[CAREER_ASPIRATION]]',
     learningFocus: '[[LEARNING_FOCUS]]',
-    typingPhrases: ['[[TYPING_PHRASE_1]]', '[[TYPING_PHRASE_2]]'],
+    typingPhrases: ['a learner', 'ENFP', 'curious'],
     interests: [
-      '[[INTEREST_1]]',
-      '[[INTEREST_2]]',
-      '[[INTEREST_3]]',
-      '[[INTEREST_4]]',
-      '[[INTEREST_5]]',
-      '[[INTEREST_6]]',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+    ],
+    AreaInterests: [
+      'abc',
+      '',
+      '',
+      '',
+      '',
+      '',
     ],
   },
   'zh-Hans': {
@@ -53,14 +64,22 @@ export const personalInfoByLanguage: Record<Language, LocalizedPersonalInfo> = {
     aboutIntro: '[[ABOUT_INTRO_ZH]]',
     careerAspiration: '[[CAREER_ASPIRATION_ZH]]',
     learningFocus: '[[LEARNING_FOCUS_ZH]]',
-    typingPhrases: ['[[TYPING_PHRASE_1_ZH]]', '[[TYPING_PHRASE_2_ZH]]'],
+    typingPhrases: ['a learner', 'ENFP', 'curious'],
     interests: [
-      '[[INTEREST_1_ZH]]',
-      '[[INTEREST_2_ZH]]',
-      '[[INTEREST_3_ZH]]',
-      '[[INTEREST_4_ZH]]',
-      '[[INTEREST_5_ZH]]',
-      '[[INTEREST_6_ZH]]',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+    ],
+    AreaInterests: [
+      'abc',
+      '',
+      '',
+      '',
+      '',
+      '',
     ],
   },
   de: {
@@ -70,14 +89,22 @@ export const personalInfoByLanguage: Record<Language, LocalizedPersonalInfo> = {
     aboutIntro: '[[ABOUT_INTRO_DE]]',
     careerAspiration: '[[CAREER_ASPIRATION_DE]]',
     learningFocus: '[[LEARNING_FOCUS_DE]]',
-    typingPhrases: ['[[TYPING_PHRASE_1_DE]]', '[[TYPING_PHRASE_2_DE]]'],
+    typingPhrases: ['a learner', 'ENFP', 'curious'],
     interests: [
-      '[[INTEREST_1_DE]]',
-      '[[INTEREST_2_DE]]',
-      '[[INTEREST_3_DE]]',
-      '[[INTEREST_4_DE]]',
-      '[[INTEREST_5_DE]]',
-      '[[INTEREST_6_DE]]',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+    ],
+    AreaInterests: [
+      'abc',
+      '',
+      '',
+      '',
+      '',
+      '',
     ],
   },
 }

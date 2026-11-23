@@ -1,33 +1,56 @@
-import { Menu, Moon, Sun, X } from 'lucide-react'
-import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react'
+import { Moon, Sun } from 'lucide-react'
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+} from 'react'
 import { personalInfo } from '../data/personalInfo'
 import { useTheme } from '../hooks/useTheme'
 import { useLanguage } from '../i18n/useLanguage'
 import { dictionaries, languages } from '../i18n'
+import {
+  solveHalfCircle,
+  solveQuarterCircle,
+  type FanPosition,
+  type FanPillSize,
+} from '../lib/fanLayout'
 
 const sectionIds = ['home', 'about', 'skills', 'projects', 'education', 'contact']
+const fanGap = 8
+const phoneFanGap = 12
+type FanItemStyle = CSSProperties & {
+  '--fan-x': string
+  '--fan-y': string
+}
 
 export function Navbar() {
   const [activeSection, setActiveSection] = useState('home')
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isFanOpen, setIsFanOpen] = useState(
     () => window.scrollY <= 40,
   )
-  const menuButtonRef = useRef<HTMLButtonElement>(null)
-  const firstLinkRef = useRef<HTMLAnchorElement>(null)
+  const [fanPositions, setFanPositions] = useState<Record<string, FanPosition>>({})
+  const [fanAnchorX, setFanAnchorX] = useState(0)
+  const headerRef = useRef<HTMLElement>(null)
   const fanRef = useRef<HTMLElement>(null)
+  const actionsRef = useRef<HTMLDivElement>(null)
   const leaveTimerRef = useRef<number | null>(null)
   const { theme, toggleTheme } = useTheme()
   const { language, setLanguage, dictionary } = useLanguage()
 
-  const navigationLinks = [
-    { label: dictionary.navigation.home, id: 'home' },
-    { label: dictionary.navigation.about, id: 'about' },
-    { label: dictionary.navigation.skills, id: 'skills' },
-    { label: dictionary.navigation.projects, id: 'projects' },
-    { label: dictionary.navigation.education, id: 'education' },
-    { label: dictionary.navigation.contact, id: 'contact' },
-  ]
+  const navigationLinks = useMemo(
+    () => [
+      { label: dictionary.navigation.home, id: 'home' },
+      { label: dictionary.navigation.about, id: 'about' },
+      { label: dictionary.navigation.skills, id: 'skills' },
+      { label: dictionary.navigation.projects, id: 'projects' },
+      { label: dictionary.navigation.education, id: 'education' },
+      { label: dictionary.navigation.contact, id: 'contact' },
+    ],
+    [dictionary],
+  )
 
   useEffect(() => {
     const sections = sectionIds
@@ -52,10 +75,6 @@ export function Navbar() {
   }, [])
 
   useEffect(() => {
-    if (isMenuOpen) firstLinkRef.current?.focus()
-  }, [isMenuOpen])
-
-  useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY <= 40) setIsFanOpen(true)
       else if (window.scrollY >= 120) setIsFanOpen(false)
@@ -65,13 +84,122 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useLayoutEffect(() => {
+    const fan = fanRef.current
+    const header = headerRef.current
+    const actions = actionsRef.current
+    if (!fan || !header || !actions) return
+
+    let isActive = true
+    const recalculateFan = () => {
+      if (!isActive) return
+      const activePill = fan.querySelector<HTMLElement>('[data-fan-centre] button')
+      if (!activePill) return
+
+      const activeSize: FanPillSize = {
+        width: activePill.offsetWidth,
+        height: activePill.offsetHeight,
+      }
+      const otherLinks = navigationLinks.filter(({ id }) => id !== activeSection)
+      const otherSizes = otherLinks.map(({ id }) => {
+        const pill = fan.querySelector<HTMLElement>(`[data-fan-id="${id}"]`)
+        return {
+          width: pill?.offsetWidth ?? 0,
+          height: pill?.offsetHeight ?? 0,
+        }
+      })
+      const isPhone = window.matchMedia('(max-width: 600px)').matches
+      const positions = isPhone
+        ? solveQuarterCircle(otherSizes, activeSize, fanGap)
+        : solveHalfCircle(otherSizes, activeSize, fanGap)
+      const nextPositions: Record<string, FanPosition> = {
+        [activeSection]: { x: 0, y: 0 },
+      }
+      otherLinks.forEach(({ id }, index) => {
+        nextPositions[id] = positions[index]
+      })
+
+      const allPills = [
+        { position: { x: 0, y: 0 }, size: activeSize },
+        ...otherLinks.map((_, index) => ({
+          position: positions[index],
+          size: otherSizes[index],
+        })),
+      ]
+      const leftExtent = Math.min(
+        ...allPills.map(({ position, size }) => position.x - size.width / 2),
+      )
+      const rightExtent = Math.max(
+        ...allPills.map(({ position, size }) => position.x + size.width / 2),
+      )
+      const maxY = Math.max(
+        ...allPills.map(({ position, size }) => position.y + size.height),
+      )
+      const headerRect = header.getBoundingClientRect()
+      const actionsRect = actions.getBoundingClientRect()
+      const viewportMargin = 16
+      const desiredX = actionsRect.left - headerRect.left - 12
+      let minX = viewportMargin - leftExtent
+      let maxX = window.innerWidth - viewportMargin - rightExtent
+
+      const contactStrip = document.querySelector<HTMLElement>('.contact-strip')
+      if (contactStrip) {
+        const stripRect = contactStrip.getBoundingClientRect()
+        const fanTop = headerRect.bottom + (isPhone ? phoneFanGap : fanGap)
+        const fanBottom = fanTop + maxY
+        const overlapsVertically =
+          fanTop < stripRect.bottom && fanBottom > stripRect.top
+        if (overlapsVertically) {
+          maxX = Math.min(maxX, stripRect.left - headerRect.left - 8 - rightExtent)
+        }
+      }
+
+      if (minX > maxX) {
+        minX = viewportMargin - leftExtent
+        maxX = window.innerWidth - viewportMargin - rightExtent
+      }
+      setFanPositions(nextPositions)
+      setFanAnchorX(Math.min(maxX, Math.max(minX, desiredX)))
+    }
+
+    let frame = 0
+    const measureFan = () => {
+      window.cancelAnimationFrame(frame)
+      frame = window.requestAnimationFrame(recalculateFan)
+    }
+
+    const pills = fan.querySelectorAll<HTMLElement>(
+      '.navbar-fan-pill, .navbar-fan-centre-button',
+    )
+    const resizeObserver = new ResizeObserver(measureFan)
+    pills.forEach((pill) => resizeObserver.observe(pill))
+
+    const fontSet = document.fonts
+    void fontSet.ready.then(measureFan)
+    fontSet.addEventListener('loadingdone', measureFan)
+    window.addEventListener('resize', measureFan)
+    recalculateFan()
+
+    return () => {
+      window.cancelAnimationFrame(frame)
+      isActive = false
+      resizeObserver.disconnect()
+      fontSet.removeEventListener('loadingdone', measureFan)
+      window.removeEventListener('resize', measureFan)
+    }
+  }, [activeSection, language, navigationLinks])
+
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {
       if (!(event.target instanceof Element)) return
       if (!fanRef.current?.contains(event.target)) setIsFanOpen(false)
     }
     const handleKeyDown = (event: globalThis.KeyboardEvent) => {
-      if (event.key === 'Escape') setIsFanOpen(false)
+      const fan = fanRef.current
+      if (event.key === 'Escape' && fan?.classList.contains('is-open')) {
+        setIsFanOpen(false)
+        fan.querySelector<HTMLButtonElement>('.navbar-fan-centre-button')?.focus()
+      }
     }
     document.addEventListener('pointerdown', handlePointerDown)
     document.addEventListener('keydown', handleKeyDown)
@@ -96,21 +224,13 @@ export function Navbar() {
 
   function scheduleFanClose() {
     if (leaveTimerRef.current !== null) window.clearTimeout(leaveTimerRef.current)
-    leaveTimerRef.current = window.setTimeout(() => setIsFanOpen(false), 400)
-  }
-
-  function closeMenu(restoreFocus = false) {
-    setIsMenuOpen(false)
-    if (restoreFocus) menuButtonRef.current?.focus()
-  }
-
-  function handleMenuKeyDown(event: KeyboardEvent<HTMLElement>) {
-    if (event.key === 'Escape' && isMenuOpen) closeMenu(true)
+    leaveTimerRef.current = window.setTimeout(() => {
+      if (fanRef.current?.contains(document.activeElement)) return
+      setIsFanOpen(false)
+    }, 400)
   }
 
   function handleLinkClick(id?: string) {
-    closeMenu(window.matchMedia('(max-width: 800px)').matches)
-
     if (id && window.location.hash.startsWith('#/certificates')) {
       window.location.hash = `#${id}`
     }
@@ -127,14 +247,10 @@ export function Navbar() {
     }
   }
 
-  function renderLanguageSwitcher(mobile = false) {
+  function renderLanguageSwitcher() {
     return (
       <div
-        className={
-          mobile
-            ? 'navbar-language-switcher navbar-language-mobile'
-            : 'navbar-language-switcher'
-        }
+        className="navbar-language-switcher"
         role="group"
         aria-label={dictionary.navbar.languageSwitcher}
       >
@@ -156,7 +272,7 @@ export function Navbar() {
   }
 
   return (
-    <header className="navbar" onKeyDown={handleMenuKeyDown}>
+    <header ref={headerRef} className="navbar">
       <a
         className="navbar-brand"
         href="#home"
@@ -172,11 +288,11 @@ export function Navbar() {
       <nav
         ref={fanRef}
         id="primary-navigation"
-        className={`navbar-fan${isFanOpen ? ' is-open' : ''}${isMenuOpen ? ' is-mobile-open' : ''}`}
+        className={`navbar-fan${isFanOpen ? ' is-open' : ''}`}
         aria-label={dictionary.navbar.primaryNavigation}
+        style={{ left: `${fanAnchorX}px` }}
         onMouseEnter={openFanForHover}
         onMouseLeave={scheduleFanClose}
-        onFocus={() => setIsFanOpen(true)}
       >
         <ol className="navbar-fan-list">
           {navigationLinks.map(({ label, id }, index) => {
@@ -201,22 +317,11 @@ export function Navbar() {
               )
             }
 
-            const otherLinks = navigationLinks.filter(
-              ({ id: linkId }) => linkId !== activeSection,
-            )
-            const otherIndex = otherLinks.findIndex(({ id: linkId }) => linkId === id)
-            const slots: Array<{ x: number; y: number }> = [
-              { x: -220, y: 0 },
-              { x: -110, y: 62 },
-              { x: 0, y: 74 },
-              { x: 110, y: 62 },
-              { x: 220, y: 0 },
-            ]
-            const slot = slots[otherIndex] || slots[0]
-            const style = {
+            const slot = fanPositions[id] ?? { x: 0, y: 0 }
+            const style: FanItemStyle = {
               '--fan-x': `${slot.x}px`,
               '--fan-y': `${slot.y}px`,
-            } as CSSProperties
+            }
 
             return (
               <li
@@ -224,9 +329,9 @@ export function Navbar() {
                 className="navbar-fan-item"
                 style={style}
                 data-fan-index={index}
+                data-fan-id={id}
               >
                 <a
-                  ref={index === 0 ? firstLinkRef : undefined}
                   className="navbar-fan-pill"
                   href={`#${id}`}
                   onClick={() => handleLinkClick(id)}
@@ -237,11 +342,10 @@ export function Navbar() {
             )
           })}
         </ol>
-        {renderLanguageSwitcher(true)}
       </nav>
 
-      <div className="navbar-actions">
-        {renderLanguageSwitcher(false)}
+      <div ref={actionsRef} className="navbar-actions">
+        {renderLanguageSwitcher()}
         <button
           type="button"
           className="navbar-theme-toggle"
@@ -261,25 +365,6 @@ export function Navbar() {
             <Sun aria-hidden="true" size={19} />
           ) : (
             <Moon aria-hidden="true" size={19} />
-          )}
-        </button>
-        <button
-          ref={menuButtonRef}
-          type="button"
-          className="navbar-menu-toggle"
-          aria-label={
-            isMenuOpen
-              ? dictionary.navbar.closeMenu
-              : dictionary.navbar.openMenu
-          }
-          aria-expanded={isMenuOpen}
-          aria-controls="primary-navigation"
-          onClick={() => setIsMenuOpen((open) => !open)}
-        >
-          {isMenuOpen ? (
-            <X aria-hidden="true" size={22} />
-          ) : (
-            <Menu aria-hidden="true" size={22} />
           )}
         </button>
       </div>

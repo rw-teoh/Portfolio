@@ -5,8 +5,6 @@ export const de: Dictionary = {
   languageName: 'Deutsch',
   navbar: {
     primaryNavigation: 'Hauptnavigation',
-    openMenu: 'Navigationsmenü öffnen',
-    closeMenu: 'Navigationsmenü schließen',
     switchToLight: 'Zu hellem Design wechseln',
     switchToDark: 'Zu dunklem Design wechseln',
     languageSwitcher: 'Sprache auswählen',
@@ -29,7 +27,7 @@ export const de: Dictionary = {
   hero: {
     greeting: 'Hallo, ich bin',
     studentLabel: 'Student der Softwaretechnik',
-    interestLead: 'Mich interessiert',
+    interestLead: 'Ich bin',
     staticPhraseLabel: 'Interessen in der Softwaretechnik',
     scrollDown: 'Weiter nach unten',
     certificates: 'Zertifikate',

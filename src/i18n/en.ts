@@ -4,8 +4,6 @@ export const en: Dictionary = {
   languageName: 'English',
   navbar: {
     primaryNavigation: 'Primary navigation',
-    openMenu: 'Open navigation menu',
-    closeMenu: 'Close navigation menu',
     switchToLight: 'Switch to light theme',
     switchToDark: 'Switch to dark theme',
     languageSwitcher: 'Choose language',
@@ -28,7 +26,7 @@ export const en: Dictionary = {
   hero: {
     greeting: 'Hello, I’m',
     studentLabel: 'Software Engineering Student',
-    interestLead: 'I’m interested in',
+    interestLead: 'I’m',
     staticPhraseLabel: 'Software engineering interests',
     scrollDown: 'Scroll down',
     certificates: 'Certificates',

@@ -2,7 +2,7 @@
 
 ## Current stage
 
-Design change request v10.1 — Part F: Projects
+E2-b — Responsive navigation fan
 
 ## Completed
 
@@ -46,6 +46,12 @@ Design change request v10.1 — Part F: Projects
 - E1-b feedback: 72px gutter retained, minimum cloud width lowered to 200px, and available-width clouds now wrap player controls below 200px of timeline width.
 - E2 corner menu: desktop half-fan/active-pill, hysteresis, mobile hamburger fan, heading focus and 400ms leave delay implemented.
 - E2 final validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
+- E2-b: removed the hamburger and obsolete mobile list; the active-section pill now opens a measured half-circle fan on desktop/tablet and quarter-circle fan on phones.
+- E2-b: pill dimensions are remeasured by `ResizeObserver`, `document.fonts.ready`, `loadingdone`, language changes and viewport resizing.
+- E2-b: retained 120px/40px scroll hysteresis, 400ms pointer-leave delay, Escape/outside-click closing, destination-heading focus, DOM order, and Contact's existing link behavior.
+- E2-b: replaced the old +120px Home reserve with 60px desktop, 64px tablet and 72px phone reserves; the sticky header's 72px is already in document flow.
+- E2-b: checked the header and its ancestors for clipping rules; none clip the fan. The Hero's `overflow: hidden` is on a following sibling.
+- E2-b validation: `npm.cmd run lint` passed with one existing unused-variable warning in `src/sections/About.tsx`. `npm.cmd run build` remains blocked by the same pre-existing TypeScript error; the new Navbar typing error found on the first attempt was fixed.
 - E1-b minimum cloud width reduced to 200px with the 200px anchor; narrower columns use their actual available width and 240px-anchor metrics.
 - E1 cloud fix 2 validation pending build and lint.
 - E1 Education redesign: converted entries to compact player cards with accessible detail clouds, start/end periods, looping rewind/forward controls and reduced-motion period dots.
@@ -58,13 +64,14 @@ Design change request v10.1 — Part F: Projects
 
 ## In progress
 
-- Part G Education implemented; awaiting build/lint feedback.
+- E2-b responsive navigation fan implemented; awaiting browser feedback. Manual viewport and theme checks have not been run.
 
 ## Validation
 
 - `npm.cmd run build` passed: TypeScript and Vite production build completed successfully.
 - `npm.cmd run lint` passed with no Oxlint findings.
 - Navigation validation: `npm.cmd run build` and `npm.cmd run lint` passed.
+- E2-b validation: `npm.cmd run lint` exited successfully with the existing `AreaInterests` warning in `src/sections/About.tsx`; the production build is blocked by that pre-existing TypeScript error.
 - Part B final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
 - Part C final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
 - Part D final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
@@ -101,7 +108,7 @@ Design change request v10.1 — Part F: Projects
 ## Stage 3: Navigation
 
 - Added a sticky, responsive single-page navigation bar.
-- Added active-section tracking, hash links, mobile-menu Escape handling and focus management.
+- Added active-section tracking, hash links, navigation Escape handling and focus management.
 - Moved the theme toggle into the navigation bar.
 - Added the approved Solar Amber SVG favicon placeholder.
 - The original navigation and first Hero version are superseded by design change request v10.1.

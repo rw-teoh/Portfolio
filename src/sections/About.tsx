@@ -7,7 +7,7 @@ export function About() {
   const revealRef = useReveal<HTMLElement>()
   const { language, dictionary } = useLanguage()
   const localized = personalInfoByLanguage[language]
-  const interests = localized.interests
+const AreaInterests = localized.AreaInterests
     .filter((interest) => interest !== '')
     .slice(0, 3)
 
@@ -45,11 +45,7 @@ export function About() {
 
           <div className="about-detail-group">
             <h3>{dictionary.about.interestsLabel}</h3>
-            <ul>
-              {interests.map((interest) => (
-                <li key={interest}>{interest}</li>
-              ))}
-            </ul>
+            <p>{localized.AreaInterests}</p>
           </div>
 
           <div className="about-detail-group">

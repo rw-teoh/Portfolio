@@ -13,7 +13,7 @@ import { InterestControls } from '../components/InterestControls'
 import { ArrowDownIcon, ArrowRightIcon } from '../components/CustomIcons'
 
 function useTypingPhrase(
-  phrases: [string, string],
+  phrases: [string, string, string],
   prefersReducedMotion: boolean,
 ) {
   const [phraseIndex, setPhraseIndex] = useState(0)
@@ -171,6 +171,6 @@ export function Hero() {
   )
 }
 
-function phrasesLabel(phrases: [string, string]) {
+function phrasesLabel(phrases: [string, string, string]) {
   return phrases.join(', ')
 }

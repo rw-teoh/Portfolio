@@ -5,8 +5,6 @@ export const zh: Dictionary = {
   languageName: '简体中文',
   navbar: {
     primaryNavigation: '主导航',
-    openMenu: '打开导航菜单',
-    closeMenu: '关闭导航菜单',
     switchToLight: '切换到浅色主题',
     switchToDark: '切换到深色主题',
     languageSwitcher: '选择语言',
@@ -29,7 +27,7 @@ export const zh: Dictionary = {
   hero: {
     greeting: '你好，我是',
     studentLabel: '软件工程专业学生',
-    interestLead: '我感兴趣的是',
+    interestLead: '我是个',
     staticPhraseLabel: '软件工程兴趣',
     scrollDown: '向下滚动',
     certificates: '证书',

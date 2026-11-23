@@ -4,8 +4,6 @@ export type Dictionary = {
   languageName: string
   navbar: {
     primaryNavigation: string
-    openMenu: string
-    closeMenu: string
     switchToLight: string
     switchToDark: string
     languageSwitcher: string
