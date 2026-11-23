@@ -36,6 +36,23 @@ export function ProjectCard({
   const repositoryUrl = project.repositoryUrl?.trim()
   const demoUrl = project.demoUrl?.trim()
 
+    if (project.locked) {
+    return (
+      <article
+        role="group"
+        aria-roledescription={slideRoleDescription}
+        aria-label={slideLabel}
+        className="project-card project-card-locked"
+        data-front={isFront}
+      >
+        <div className="project-card-content">
+          <span className="locked-icon" aria-hidden="true">🔒</span>
+          <h3 className="project-card-title">{title}</h3>
+        </div>
+      </article>
+    )
+  }
+
   return (
     <article
       role="group"

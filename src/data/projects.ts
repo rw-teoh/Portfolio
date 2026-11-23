@@ -1,3 +1,5 @@
+import { LOCK_PROJECTS } from '../lib/config';
+
 export type LocalizedProjectText = {
   en: string
   'zh-Hans'?: string
@@ -17,13 +19,14 @@ export type Project = {
   }
   repositoryUrl?: string
   demoUrl?: string
+  locked?: boolean
 }
 
 // Add or edit an entry with a stable id, English copy, optional translations,
 // optional technologies, an image with intrinsic dimensions, and optional URLs.
 // Remove an entry from this array to remove it from the section.
 // PREVIEW ONLY: remove these five fixtures separately after feedback.
-export const projects: Project[] = [
+const realProjects: Project[] = [
   {
     id: 'preview-only-ring-project-1',
     title: {
@@ -155,3 +158,12 @@ export const projects: Project[] = [
     demoUrl: '#',
   },
 ]
+
+const lockedProjects: Project[] = Array.from({ length: 5 }, (_, i) => ({
+  id: `locked-${i + 1}`,
+    title: { en: 'Locked', 'zh-Hans': '已锁定', de: 'Gesperrt' },
+  description: { en: '' },
+  locked: true,
+}))
+
+export const projects: Project[] = LOCK_PROJECTS ? lockedProjects : realProjects
