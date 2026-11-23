@@ -23,43 +23,44 @@ export const skillCategories: SkillCategory[] = [
   {
     id: 'programmingLanguages',
     skills: [
-      { id: 'skill-placeholder-1', name: '[[SKILL_NAME_1]]' },
-      { id: 'skill-placeholder-2', name: '[[SKILL_NAME_2]]' },
+      { id: 'skill-placeholder-1a', name: 'C++' },
+      { id: 'skill-placeholder-1b', name: 'Python' },
+      { id: 'skill-placeholder-1c', name: 'Java' },
     ],
   },
   {
     id: 'frontend',
     skills: [
-      { id: 'skill-placeholder-3', name: '[[SKILL_NAME_3]]' },
-      { id: 'skill-placeholder-4', name: '[[SKILL_NAME_4]]' },
+      { id: 'skill-placeholder-2a', name: 'React.js' },
+      { id: 'skill-placeholder-2b', name: 'HTML/CSS/JavaScript' },
     ],
   },
   {
     id: 'backend',
     skills: [
-      { id: 'skill-placeholder-5', name: '[[SKILL_NAME_5]]' },
-      { id: 'skill-placeholder-6', name: '[[SKILL_NAME_6]]' },
+      { id: 'skill-placeholder-3a', name: 'Node.js' },
+      //{ id: 'skill-placeholder-3b', name: '' },
     ],
   },
   {
     id: 'databases',
     skills: [
-      { id: 'skill-placeholder-7', name: '[[SKILL_NAME_7]]' },
-      { id: 'skill-placeholder-8', name: '[[SKILL_NAME_8]]' },
+      { id: 'skill-placeholder-4a', name: 'MySQL' },
+      //{ id: 'skill-placeholder-4b', name: '[[SKILL_NAME_8]]' },
     ],
   },
   {
     id: 'developerTools',
     skills: [
-      { id: 'skill-placeholder-9', name: '[[SKILL_NAME_9]]' },
-      { id: 'skill-placeholder-10', name: '[[SKILL_NAME_10]]' },
+      { id: 'skill-placeholder-9', name: 'VS Code' },
+      { id: 'skill-placeholder-10', name: 'GitHub' },
     ],
   },
-  {
-    id: 'otherTechnologies',
-    skills: [
-      { id: 'skill-placeholder-11', name: '[[SKILL_NAME_11]]' },
-      { id: 'skill-placeholder-12', name: '[[SKILL_NAME_12]]' },
-    ],
-  },
+  // {
+  //   id: 'otherTechnologies',
+  //   skills: [
+  //     { id: 'skill-placeholder-11', name: '[[SKILL_NAME_11]]' },
+  //     { id: 'skill-placeholder-12', name: '[[SKILL_NAME_12]]' },
+  //   ],
+  // },
 ]
