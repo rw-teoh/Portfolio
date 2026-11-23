@@ -90,5 +90,11 @@ export const de: Dictionary = {
     eyebrow: 'Ausbildung',
     title: 'Mein Lernweg',
     certificatesLink: 'Zertifikate',
+    showDetails: 'Details anzeigen: {name}',
+    logoPlaceholder: 'Logo',
+    periodLabel: 'Studienzeitraum {start} bis {end}',
+    previousEntry: 'Vorheriger Eintrag',
+    nextEntry: 'Nächster Eintrag',
+    entryAnnouncement: 'Eintrag {current} von {total}: {name}',
   },
 }

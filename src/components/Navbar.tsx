@@ -1,5 +1,5 @@
 import { Menu, Moon, Sun, X } from 'lucide-react'
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react'
 import { personalInfo } from '../data/personalInfo'
 import { useTheme } from '../hooks/useTheme'
 import { useLanguage } from '../i18n/useLanguage'
@@ -10,8 +10,13 @@ const sectionIds = ['home', 'about', 'skills', 'projects', 'education', 'contact
 export function Navbar() {
   const [activeSection, setActiveSection] = useState('home')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isFanOpen, setIsFanOpen] = useState(
+    () => window.scrollY <= 40,
+  )
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const firstLinkRef = useRef<HTMLAnchorElement>(null)
+  const fanRef = useRef<HTMLElement>(null)
+  const leaveTimerRef = useRef<number | null>(null)
   const { theme, toggleTheme } = useTheme()
   const { language, setLanguage, dictionary } = useLanguage()
 
@@ -50,6 +55,50 @@ export function Navbar() {
     if (isMenuOpen) firstLinkRef.current?.focus()
   }, [isMenuOpen])
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY <= 40) setIsFanOpen(true)
+      else if (window.scrollY >= 120) setIsFanOpen(false)
+    }
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!(event.target instanceof Element)) return
+      if (!fanRef.current?.contains(event.target)) setIsFanOpen(false)
+    }
+    const handleKeyDown = (event: globalThis.KeyboardEvent) => {
+      if (event.key === 'Escape') setIsFanOpen(false)
+    }
+    document.addEventListener('pointerdown', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
+
+  useEffect(() => () => {
+    if (leaveTimerRef.current !== null) window.clearTimeout(leaveTimerRef.current)
+  }, [])
+
+  function openFanForHover() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
+    if (leaveTimerRef.current !== null) {
+      window.clearTimeout(leaveTimerRef.current)
+      leaveTimerRef.current = null
+    }
+    setIsFanOpen(true)
+  }
+
+  function scheduleFanClose() {
+    if (leaveTimerRef.current !== null) window.clearTimeout(leaveTimerRef.current)
+    leaveTimerRef.current = window.setTimeout(() => setIsFanOpen(false), 400)
+  }
+
   function closeMenu(restoreFocus = false) {
     setIsMenuOpen(false)
     if (restoreFocus) menuButtonRef.current?.focus()
@@ -64,6 +113,17 @@ export function Navbar() {
 
     if (id && window.location.hash.startsWith('#/certificates')) {
       window.location.hash = `#${id}`
+    }
+    if (id) {
+      setIsFanOpen(false)
+      window.requestAnimationFrame(() => {
+        const section = document.getElementById(id)
+        const heading = section?.querySelector<HTMLElement>('h1, h2')
+        if (heading) {
+          heading.setAttribute('tabindex', '-1')
+          heading.focus({ preventScroll: true })
+        }
+      })
     }
   }
 
@@ -110,22 +170,73 @@ export function Navbar() {
       </a>
 
       <nav
+        ref={fanRef}
         id="primary-navigation"
-        className={`navbar-links${isMenuOpen ? ' is-open' : ''}`}
+        className={`navbar-fan${isFanOpen ? ' is-open' : ''}${isMenuOpen ? ' is-mobile-open' : ''}`}
         aria-label={dictionary.navbar.primaryNavigation}
+        onMouseEnter={openFanForHover}
+        onMouseLeave={scheduleFanClose}
+        onFocus={() => setIsFanOpen(true)}
       >
-        {navigationLinks.map(({ label, id }, index) => (
-          <a
-            key={id}
-            ref={index === 0 ? firstLinkRef : undefined}
-            className={activeSection === id ? 'is-active' : undefined}
-            href={`#${id}`}
-            aria-current={activeSection === id ? 'location' : undefined}
-            onClick={() => handleLinkClick(id)}
-          >
-            {label}
-          </a>
-        ))}
+        <ol className="navbar-fan-list">
+          {navigationLinks.map(({ label, id }, index) => {
+            if (activeSection === id) {
+              return (
+                <li
+                  key={id}
+                  className="navbar-fan-item navbar-fan-centre"
+                  data-fan-centre="true"
+                >
+                  <button
+                    type="button"
+                    className="navbar-fan-centre-button"
+                    aria-expanded={isFanOpen}
+                    aria-controls="primary-navigation"
+                    aria-current="location"
+                    onClick={() => setIsFanOpen((open) => !open)}
+                  >
+                    {label}
+                  </button>
+                </li>
+              )
+            }
+
+            const otherLinks = navigationLinks.filter(
+              ({ id: linkId }) => linkId !== activeSection,
+            )
+            const otherIndex = otherLinks.findIndex(({ id: linkId }) => linkId === id)
+            const slots: Array<{ x: number; y: number }> = [
+              { x: -220, y: 0 },
+              { x: -110, y: 62 },
+              { x: 0, y: 74 },
+              { x: 110, y: 62 },
+              { x: 220, y: 0 },
+            ]
+            const slot = slots[otherIndex] || slots[0]
+            const style = {
+              '--fan-x': `${slot.x}px`,
+              '--fan-y': `${slot.y}px`,
+            } as CSSProperties
+
+            return (
+              <li
+                key={id}
+                className="navbar-fan-item"
+                style={style}
+                data-fan-index={index}
+              >
+                <a
+                  ref={index === 0 ? firstLinkRef : undefined}
+                  className="navbar-fan-pill"
+                  href={`#${id}`}
+                  onClick={() => handleLinkClick(id)}
+                >
+                  {label}
+                </a>
+              </li>
+            )
+          })}
+        </ol>
         {renderLanguageSwitcher(true)}
       </nav>
 

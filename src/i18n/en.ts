@@ -89,5 +89,11 @@ export const en: Dictionary = {
     eyebrow: 'Education',
     title: 'Learning journey',
     certificatesLink: 'Certificates',
+    showDetails: 'Show details: {name}',
+    logoPlaceholder: 'Logo',
+    periodLabel: 'Study period {start} to {end}',
+    previousEntry: 'Previous entry',
+    nextEntry: 'Next entry',
+    entryAnnouncement: 'Entry {current} of {total}: {name}',
   },
 }

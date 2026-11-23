@@ -10,6 +10,9 @@ export type EducationEntry = {
   period: LocalizedEducationText
   programme: LocalizedEducationText
   achievements: LocalizedEducationText[]
+  startYear: string
+  endYear: string
+  logo?: string
 }
 
 export const educationEntries: EducationEntry[] = [
@@ -26,6 +29,8 @@ export const educationEntries: EducationEntry[] = [
     programme: {
       en: 'Software Engineering — Year 1',
     },
+    startYear: '[[EDU_1_START_YEAR]]',
+    endYear: '[[EDU_1_END_YEAR]]',
     achievements: [
       {
         en: '[[EDU_1_ACHIEVEMENT_1]]',
@@ -56,6 +61,8 @@ export const educationEntries: EducationEntry[] = [
       'zh-Hans': '[[EDU_2_PROGRAMME_ZH]]',
       de: '[[EDU_2_PROGRAMME_DE]]',
     },
+    startYear: '[[EDU_2_START_YEAR]]',
+    endYear: '[[EDU_2_END_YEAR]]',
     achievements: [
       {
         en: '[[EDU_2_ACHIEVEMENT_1]]',
@@ -81,6 +88,8 @@ export const educationEntries: EducationEntry[] = [
       'zh-Hans': '[[EDU_3_PROGRAMME_ZH]]',
       de: '[[EDU_3_PROGRAMME_DE]]',
     },
+    startYear: '[[EDU_3_START_YEAR]]',
+    endYear: '[[EDU_3_END_YEAR]]',
     achievements: [
       {
         en: '[[EDU_3_ACHIEVEMENT_1]]',

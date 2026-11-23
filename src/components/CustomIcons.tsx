@@ -79,3 +79,12 @@ export function GenericSkillIcon(props: IconProps) {
     </IconBase>
   )
 }
+
+export function TrophyIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M8 4h8v3c0 3-1.8 5-4 5S8 10 8 7V4Z" />
+      <path d="M8 6H5v1c0 2 1.3 3.5 3.5 3.5M16 6h3v1c0 2-1.3 3.5-3.5 3.5M12 12v4m-4 4h8m-6-4h4v4H10v-4Z" />
+    </IconBase>
+  )
+}

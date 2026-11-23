@@ -36,7 +36,23 @@ Design change request v10.1 — Part F: Projects
 - Cascade fix validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
 - Added an opaque ring-card surface with a pointer-transparent depth tint overlay; front cards have no tint and opacity remains 1.
 - Solid-card tint overlay validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
+- E1 fix pass: replaced cloud pseudo-elements with a measured scalloped SVG, fixed 72px player cards, and preserved/repaired rewind/forward focus.
+- E1 fix-pass validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
+- E1 cloud fix 2: ported the puffed irregular SVG outline generator, applied 36px safe padding, and made player/bar content shrink inside narrow clouds.
+- Repaired the cloud size effect placement and reran final build/lint validation.
+- E1 cloud fix 2 final validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
+- E1-b: under-player cloud expansion and fluid desktop/mobile cloud sizing are being implemented.
+- E1-b final validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
+- E1-b feedback: 72px gutter retained, minimum cloud width lowered to 200px, and available-width clouds now wrap player controls below 200px of timeline width.
+- E2 corner menu: desktop half-fan/active-pill, hysteresis, mobile hamburger fan, heading focus and 400ms leave delay implemented.
+- E2 final validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
+- E1-b minimum cloud width reduced to 200px with the 200px anchor; narrower columns use their actual available width and 240px-anchor metrics.
+- E1 cloud fix 2 validation pending build and lint.
+- E1 Education redesign: converted entries to compact player cards with accessible detail clouds, start/end periods, looping rewind/forward controls and reduced-motion period dots.
+- Fixed the Education outside-click/Escape effect dependency before final lint validation.
+- E1 final validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
 - Added the localized Education timeline section with UTAR Year 1 real values and placeholder-only remaining entries.
+- E2 corner menu implementation in progress: desktop fan geometry, hysteresis, mobile hamburger fan and heading focus behavior added.
 - Made existing skill cards float with subtle irregular motion and pause/hover lift, preserving non-interactive behavior and all skill content.
 - Part G final validation: `npm.cmd run build` passed; `npm.cmd run lint` passed with no findings.
 

@@ -90,5 +90,11 @@ export const zh: Dictionary = {
     eyebrow: '教育',
     title: '学习经历',
     certificatesLink: '证书',
+    showDetails: '显示详情：{name}',
+    logoPlaceholder: '徽标',
+    periodLabel: '学习时间从 {start} 至 {end}',
+    previousEntry: '上一个教育经历',
+    nextEntry: '下一个教育经历',
+    entryAnnouncement: '第 {current} 项，共 {total} 项：{name}',
   },
 }

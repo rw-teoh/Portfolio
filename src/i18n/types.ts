@@ -89,5 +89,11 @@ export type Dictionary = {
     eyebrow: string
     title: string
     certificatesLink: string
+    showDetails: string
+    logoPlaceholder: string
+    periodLabel: string
+    previousEntry: string
+    nextEntry: string
+    entryAnnouncement: string
   }
 }
