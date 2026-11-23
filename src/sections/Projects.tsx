@@ -11,6 +11,15 @@ import { ProjectCard } from '../components/ProjectCard'
 import { projects } from '../data/projects'
 import { useReveal } from '../hooks/useReveal'
 import { useLanguage } from '../i18n/useLanguage'
+import {
+  SectionDecorations,
+  type SectionDecorationPlacement,
+} from '../components/SectionDecorations'
+
+const projectsDecorations: SectionDecorationPlacement[] = [
+  { id: 'projects-star', kind: 'star', size: 14, top: 18, left: 24, hideBelow: 1280 },
+  { id: 'projects-plane', kind: 'plane', size: 30, top: 18, left: 64, hideBelow: 1280 },
+]
 
 function normalizeDegrees(value: number) {
   return ((value + 540) % 360) - 180
@@ -159,6 +168,7 @@ export function Projects() {
       className="projects-section projects-reveal"
       aria-labelledby="projects-title"
     >
+      <SectionDecorations sectionId="projects" placements={projectsDecorations} />
       <Container className="projects-layout">
         <header className="projects-header">
           <p className="section-eyebrow">{dictionary.projects.eyebrow}</p>

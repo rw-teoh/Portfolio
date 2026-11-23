@@ -2,12 +2,20 @@ import { Container } from '../components/Container'
 import { personalInfo, personalInfoByLanguage } from '../data/personalInfo'
 import { useReveal } from '../hooks/useReveal'
 import { useLanguage } from '../i18n/useLanguage'
+import {
+  SectionDecorations,
+  type SectionDecorationPlacement,
+} from '../components/SectionDecorations'
+
+const aboutDecorations: SectionDecorationPlacement[] = [
+  { id: 'about-star', kind: 'star', size: 14, top: 18, left: 24, hideBelow: 769 },
+]
 
 export function About() {
   const revealRef = useReveal<HTMLElement>()
   const { language, dictionary } = useLanguage()
   const localized = personalInfoByLanguage[language]
-const AreaInterests = localized.AreaInterests
+  const AreaInterests = localized.AreaInterests
     .filter((interest) => interest !== '')
     .slice(0, 3)
 
@@ -18,6 +26,7 @@ const AreaInterests = localized.AreaInterests
       className="about-section about-reveal"
       aria-labelledby="about-title"
     >
+      <SectionDecorations sectionId="about" placements={aboutDecorations} />
       <Container className="about-layout">
         <div className="about-editorial">
           <p className="section-eyebrow">{dictionary.about.eyebrow}</p>
@@ -45,7 +54,11 @@ const AreaInterests = localized.AreaInterests
 
           <div className="about-detail-group">
             <h3>{dictionary.about.interestsLabel}</h3>
-            <p>{localized.AreaInterests}</p>
+            <ul>
+              {AreaInterests.map((interest, index) => (
+                <li key={`${interest}-${index}`}>{interest}</li>
+              ))}
+            </ul>
           </div>
 
           <div className="about-detail-group">

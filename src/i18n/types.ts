@@ -16,6 +16,33 @@ export type Dictionary = {
     education: string
     contact: string
   }
+  contact: {
+    eyebrow: string
+    title: string
+    invitation: string
+    emailLabel: string
+    socialLabel: string
+    github: string
+    linkedin: string
+    website: string
+  }
+  footer: {
+    navigationLabel: string
+    socialLabel: string
+    backToTop: string
+    copyright: string
+  }
+  certificates: {
+    documentTitle: string
+    eyebrow: string
+    title: string
+    emptyTitle: string
+    emptyDescription: string
+    collectionLabel: string
+    viewerLabel: string
+    previous: string
+    next: string
+  }
   shared: {
     certificates: string
     scrollDown: string

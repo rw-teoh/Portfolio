@@ -3,6 +3,14 @@ import { SkillCard } from '../components/SkillCard'
 import { skillCategories, type SkillCategoryId } from '../data/skills'
 import { useReveal } from '../hooks/useReveal'
 import { useLanguage } from '../i18n/useLanguage'
+import {
+  SectionDecorations,
+  type SectionDecorationPlacement,
+} from '../components/SectionDecorations'
+
+const skillsDecorations: SectionDecorationPlacement[] = [
+  { id: 'skills-star', kind: 'star', size: 14, top: 18, left: 24, hideBelow: 769 },
+]
 
 export function Skills() {
   const revealRef = useReveal<HTMLElement>()
@@ -18,6 +26,7 @@ export function Skills() {
       className="skills-section skills-reveal"
       aria-labelledby="skills-title"
     >
+      <SectionDecorations sectionId="skills" placements={skillsDecorations} />
       <Container className="skills-layout">
         <header className="skills-header">
           <p className="section-eyebrow">{dictionary.skills.eyebrow}</p>

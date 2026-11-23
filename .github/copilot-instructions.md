@@ -1,16 +1,14 @@
 # Portfolio project rules
-- Work in stages; do one part at a time, then stop and wait for "Approved" or numbered change requests.
-- The design change request (v10) overrides the master prompt (v9) where they conflict.
-- Before any terminal command, state the command, what it does and which files it affects, and wait for approval.
-- Never run git commands; suggest a commit message after each approved stage.
-- Never invent personal details, projects, skills, achievements, statistics or testimonials.
-- Use placeholders in the format [[UPPER_SNAKE_CASE]]. Before deployment advice, search the whole project for "[[" and report every match.
-- Do not install any dependency without my approval and a reason.
-- Theme: light first (#EDE8E0), dark as the alternative, saved choice, applied before first paint.
-- Languages: English default, Simplified Chinese, German; no i18n library.
-- No purple or indigo, no flat backgrounds, no Tailwind default palette, no emoji as icons, no linear or default ease-in-out easing.
-- Contact: mailto link and social links only, no form. Certificates are a separate hash page.
-- Projects data starts empty; GitHub repos appear only after a username is configured, minus hiddenRepos.
-- Target Lighthouse 90+ on the production build; check widths 360, 768, 1024 and 1440 px.
-- Say clearly which checks you actually ran and which I must do manually.
-- Update PROGRESS.md after each approved stage.
+- Work one task at a time. First restate the exact files you will create, modify and delete and wait for my approval.
+- Ask before every terminal command (state the command, what it does, which files it affects). Never run git; suggest a commit message when a task is done.
+- Create nothing outside the approved list. List every file you changed with full paths. Update PROGRESS.md.
+- Say which checks you actually ran. Never claim browser testing you did not do.
+- Do not change colours, wording, layouts or behaviour that the task does not mention.
+- Never invent personal details, projects, skills, achievements, dates, statistics or testimonials. Use [[UPPER_SNAKE_CASE]] placeholders.
+- All visible text comes from the dictionaries (en, zh-Hans, de, with the native-speaker-check comment) or localized placeholder data.
+- Theme: light first (#EDE8E0), dark alternative, saved choice, applied before first paint. Languages: English default, Simplified Chinese, German. No i18n library.
+- Verify every CSS custom property in BOTH themes and watch selector specificity (a :root[data-theme] rule beats a plain :root inside a media query).
+- Accessibility: keyboard access, visible focus, 44px touch targets on coarse pointers, aria only where needed, reduced motion means static. No horizontal overflow at 320, 360, 768, 1024, 1286 and 1440px.
+- No blur or filter effects, no partial-opacity cards that ghost through each other, no purple or indigo, no Tailwind default palette, no emoji as icons, no linear or default ease-in-out easing (use custom curves).
+- No new dependency without my approval and a reason. Temporary PREVIEW ONLY sample entries are allowed only where I asked for them.
+- Give exact console commands (getBoundingClientRect, getComputedStyle) so I can verify values myself.

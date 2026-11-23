@@ -11,6 +11,15 @@ import { useTheme } from '../hooks/useTheme'
 import { ContactStrip } from '../components/ContactStrip'
 import { InterestControls } from '../components/InterestControls'
 import { ArrowDownIcon, ArrowRightIcon } from '../components/CustomIcons'
+import {
+  SectionDecorations,
+  type SectionDecorationPlacement,
+} from '../components/SectionDecorations'
+
+const heroDecorations: SectionDecorationPlacement[] = [
+  { id: 'hero-star', kind: 'star', size: 14, top: 18, left: 24, hideBelow: 769 },
+  { id: 'hero-plane', kind: 'plane', size: 30, top: 18, left: 64, hideBelow: 1280 },
+]
 
 function useTypingPhrase(
   phrases: [string, string, string],
@@ -87,6 +96,7 @@ export function Hero() {
 
   return (
     <section className="hero-section" id="home" aria-labelledby="hero-title">
+      <SectionDecorations sectionId="home" placements={heroDecorations} />
       <ContactStrip
         email={personalInfo.email}
         githubUrl={personalInfo.githubUrl}

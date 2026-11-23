@@ -2,10 +2,15 @@
 
 ## Current stage
 
-E2-b — Responsive navigation fan
+P4 + P5 — Contact, Footer and Certificates
 
 ## Completed
 
+- P3b: added the shared inline-SVG `SectionDecorations` component and data-driven Hero, About, Skills, and Projects placements; Education's existing three timeline dots now blink. Contact decoration remains for the separately staged Contact section; no Footer exists.
+- P3b: decorative animation is paused when its section is outside the viewport or the document is hidden; reduced motion leaves stars/dots static and hides planes.
+- Build fix: restored the About interests chips by rendering the existing filtered localized values as a list; no content or style values were changed.
+- Added accurate project documentation in `README.md`: feature status, exact dependency versions, Node requirements, setup commands, real project structure, content editing instructions, design tokens, localization, accessibility/testing guidance, limitations, planned deployment, and placeholder licence/credit sections.
+- P2 README validation: read `package.json`, `package-lock.json`, `src` structure, localization files, data files, theme CSS, public avatar folders, and `PROGRESS.md`; no browser or terminal validation was run.
 - Completed and approved the v10.1 design plan.
 - Recorded approval to move the Hero from `src/components/Hero.tsx` to `src/sections/Hero.tsx` during the Hero part, not Part A.
 - Read-only approved inspection measured supplied avatar PNGs at 3,691,018 bytes total.
@@ -64,7 +69,7 @@ E2-b — Responsive navigation fan
 
 ## In progress
 
-- E2-b responsive navigation fan implemented; awaiting browser feedback. Manual viewport and theme checks have not been run.
+- Implementing the approved combined Contact/Footer and Certificates stage; the optional third social link is Personal website and remains unconfigured.
 
 ## Validation
 
@@ -72,6 +77,11 @@ E2-b — Responsive navigation fan
 - `npm.cmd run lint` passed with no Oxlint findings.
 - Navigation validation: `npm.cmd run build` and `npm.cmd run lint` passed.
 - E2-b validation: `npm.cmd run lint` exited successfully with the existing `AreaInterests` warning in `src/sections/About.tsx`; the production build is blocked by that pre-existing TypeScript error.
+- P3b targeted lint: `npm.cmd run lint -- src/components/SectionDecorations.tsx src/sections/Hero.tsx src/sections/About.tsx src/sections/Skills.tsx src/sections/Projects.tsx src/sections/Education.tsx` exited 0 with the existing `AreaInterests` warning in `src/sections/About.tsx`.
+- P3b production build: `npm.cmd run build` exited 1 because the pre-existing unused `AreaInterests` declaration in `src/sections/About.tsx` fails TypeScript (`TS6133`).
+- P3b source size: 5,488 UTF-8 bytes of TSX (shared component plus new section imports, placement arrays and render lines) and 1,667 UTF-8 bytes of decoration CSS; bundle/gzip size was not measured.
+- P3b browser verification remains manual: theme, reduced-motion and overlap checks at 360, 768, 1024, 1286 and 1440px were not run.
+- About interests build fix: `npm.cmd run build` passed (Vite production build completed); `npm.cmd run lint` passed with no findings.
 - Part B final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
 - Part C final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.
 - Part D final validation: `npm.cmd run build` and `npm.cmd run lint` passed with no findings.

@@ -11,6 +11,7 @@ import { educationEntries } from '../data/education'
 import { useReveal } from '../hooks/useReveal'
 import { useLanguage } from '../i18n/useLanguage'
 import type { LocalizedEducationText } from '../data/education'
+import { SectionDecorations } from '../components/SectionDecorations'
 
 function localizedText(
   text: LocalizedEducationText,
@@ -246,6 +247,7 @@ export function Education() {
       className="education-section education-reveal"
       aria-labelledby="education-title"
     >
+      <SectionDecorations sectionId="education" placements={[]} />
       <Container className="education-layout">
         <header className="education-header">
           <p className="section-eyebrow">{dictionary.education.eyebrow}</p>

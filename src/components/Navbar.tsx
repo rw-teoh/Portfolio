@@ -26,7 +26,11 @@ type FanItemStyle = CSSProperties & {
   '--fan-y': string
 }
 
-export function Navbar() {
+type NavbarProps = {
+  isCertificatesPage: boolean
+}
+
+export function Navbar({ isCertificatesPage }: NavbarProps) {
   const [activeSection, setActiveSection] = useState('home')
   const [isFanOpen, setIsFanOpen] = useState(
     () => window.scrollY <= 40,
@@ -51,8 +55,15 @@ export function Navbar() {
     ],
     [dictionary],
   )
+  const fanCentreId = isCertificatesPage ? 'certificates' : activeSection
+  const fanCentreLabel = isCertificatesPage
+    ? dictionary.shared.certificates
+    : navigationLinks.find(({ id }) => id === activeSection)?.label ??
+      dictionary.navigation.home
 
   useEffect(() => {
+    if (isCertificatesPage) return
+
     const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter((section): section is HTMLElement => section !== null)
@@ -72,7 +83,7 @@ export function Navbar() {
 
     sections.forEach((section) => observer.observe(section))
     return () => observer.disconnect()
-  }, [])
+  }, [isCertificatesPage])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -100,7 +111,7 @@ export function Navbar() {
         width: activePill.offsetWidth,
         height: activePill.offsetHeight,
       }
-      const otherLinks = navigationLinks.filter(({ id }) => id !== activeSection)
+      const otherLinks = navigationLinks.filter(({ id }) => id !== fanCentreId)
       const otherSizes = otherLinks.map(({ id }) => {
         const pill = fan.querySelector<HTMLElement>(`[data-fan-id="${id}"]`)
         return {
@@ -113,7 +124,7 @@ export function Navbar() {
         ? solveQuarterCircle(otherSizes, activeSize, fanGap)
         : solveHalfCircle(otherSizes, activeSize, fanGap)
       const nextPositions: Record<string, FanPosition> = {
-        [activeSection]: { x: 0, y: 0 },
+        [fanCentreId]: { x: 0, y: 0 },
       }
       otherLinks.forEach(({ id }, index) => {
         nextPositions[id] = positions[index]
@@ -187,7 +198,7 @@ export function Navbar() {
       fontSet.removeEventListener('loadingdone', measureFan)
       window.removeEventListener('resize', measureFan)
     }
-  }, [activeSection, language, navigationLinks])
+  }, [fanCentreId, language, navigationLinks])
 
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {
@@ -231,8 +242,9 @@ export function Navbar() {
   }
 
   function handleLinkClick(id?: string) {
-    if (id && window.location.hash.startsWith('#/certificates')) {
-      window.location.hash = `#${id}`
+    if (isCertificatesPage) {
+      setIsFanOpen(false)
+      return
     }
     if (id) {
       setIsFanOpen(false)
@@ -271,6 +283,25 @@ export function Navbar() {
     )
   }
 
+  const fanCentreItem = (
+    <li
+      className="navbar-fan-item navbar-fan-centre"
+      data-fan-centre="true"
+      key={fanCentreId}
+    >
+      <button
+        type="button"
+        className="navbar-fan-centre-button"
+        aria-expanded={isFanOpen}
+        aria-controls="primary-navigation"
+        aria-current="location"
+        onClick={() => setIsFanOpen((open) => !open)}
+      >
+        {fanCentreLabel}
+      </button>
+    </li>
+  )
+
   return (
     <header ref={headerRef} className="navbar">
       <a
@@ -296,25 +327,8 @@ export function Navbar() {
       >
         <ol className="navbar-fan-list">
           {navigationLinks.map(({ label, id }, index) => {
-            if (activeSection === id) {
-              return (
-                <li
-                  key={id}
-                  className="navbar-fan-item navbar-fan-centre"
-                  data-fan-centre="true"
-                >
-                  <button
-                    type="button"
-                    className="navbar-fan-centre-button"
-                    aria-expanded={isFanOpen}
-                    aria-controls="primary-navigation"
-                    aria-current="location"
-                    onClick={() => setIsFanOpen((open) => !open)}
-                  >
-                    {label}
-                  </button>
-                </li>
-              )
+            if (!isCertificatesPage && activeSection === id) {
+              return fanCentreItem
             }
 
             const slot = fanPositions[id] ?? { x: 0, y: 0 }
@@ -341,6 +355,7 @@ export function Navbar() {
               </li>
             )
           })}
+          {isCertificatesPage && fanCentreItem}
         </ol>
       </nav>
 

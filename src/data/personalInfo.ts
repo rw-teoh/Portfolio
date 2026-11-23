@@ -7,6 +7,7 @@ export const personalInfo = {
   email: 'reiwen88@gmail.com',
   githubUrl: 'https://github.com/rw-teoh',
   linkedinUrl: 'https://linkedin.com/in/rei-wen-teoh-63616744a',
+  personalWebsiteUrl: '',
   university: 'Universiti Tunku Abdul Rahman (UTAR)',
   programme: 'Software Engineering',
   academicYear: 'Year 1',
